@@ -84,7 +84,7 @@ const socialLinks = [
         <div class="space-y-2 text-gray-400">
           <p>
             <a href="mailto:samarth@example.com" class="hover:text-white transition-colors">
-              samarth@example.com
+              samarthpatel2706@gmail.com
             </a>
           </p>
           <p>Available for freelance work</p>
@@ -97,7 +97,7 @@ const socialLinks = [
     <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col sm:flex-row justify-between items-center text-gray-400 text-sm">
       <p>&copy; {currentYear} Samarth Patel. All rights reserved.</p>
       <p class="mt-2 sm:mt-0">
-        Built with ❤️ using SvelteKit & Tailwind CSS
+        Built with ❤️ using SvelteKit
       </p>
     </div>
   </div>

@@ -45,8 +45,23 @@
   });
   
   const openContactForm = () => {
-    // You can integrate with a contact form service like Formspree, Netlify Forms, etc.
-    window.open('mailto:samarthpatel2706@gmail.com?subject=Let\'s collaborate!&body=Hi Samarth,%0D%0A%0D%0AI\'d love to discuss a potential project with you.', '_blank');
+    // Create a proper mailto link that should work across all systems
+    const subject = encodeURIComponent("Let's collaborate!");
+    const body = encodeURIComponent("Hi Samarth,\n\nI'd love to discuss a potential project with you.\n\nBest regards");
+    const mailtoLink = `mailto:samarthpatel2706@gmail.com?subject=${subject}&body=${body}`;
+    
+    try {
+      // Try to open the default email client
+      window.location.href = mailtoLink;
+    } catch (error) {
+      // Fallback: copy email to clipboard and show notification
+      navigator.clipboard.writeText('samarthpatel2706@gmail.com').then(() => {
+        alert('Email address copied to clipboard: samarthpatel2706@gmail.com');
+      }).catch(() => {
+        // Ultimate fallback: just show the email
+        alert('Please send an email to: samarthpatel2706@gmail.com');
+      });
+    }
   };
 </script>
 

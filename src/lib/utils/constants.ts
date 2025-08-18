@@ -3,11 +3,11 @@ export const SITE_CONFIG = {
   name: 'Samarth Patel',
   title: 'Software Engineer',
   description: 'Software Engineer specializing in full-stack development, cloud architecture, and modern web technologies.',
-  email: 'samarth@example.com',
-  github: 'https://github.com/samarthpatel',
-  linkedin: 'https://linkedin.com/in/samarthpatel',
+  email: 'samarthpatel2706@gmail.com',
+  github: 'https://github.com/samarthpatel2005',
+  linkedin: 'https://www.linkedin.com/in/samarth-patel-051757283/',
   twitter: 'https://twitter.com/samarthpatel',
-  domain: 'https://samarthpatel.dev', // Replace with your actual domain
+  domain: 'https://samarthpatel.me', // Replace with your actual domain
 };
 
 export const NAVIGATION_ITEMS = [
