@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { SITE_CONFIG } from './utils/constants';
   
   let sectionVisible = false;
   let ctaSection: HTMLElement;
@@ -8,22 +9,29 @@
     {
       icon: '📧',
       label: 'Email',
-      value: 'samarthpatel2706@gmail.com',
-      href: 'mailto:samarthpatel2706@gmail.com'
+      value: SITE_CONFIG.email,
+      href: `mailto:${SITE_CONFIG.email}`
     },
     {
       icon: '💼',
       label: 'LinkedIn',
       value: 'Smarth Patel',
-      href: 'https://www.linkedin.com/in/samarth-patel-051757283/'
+      href: SITE_CONFIG.linkedin
     },
     {
       icon: '🐙',
       label: 'GitHub',
       value: 'Samarthpatel',
-      href: 'https://github.com/samarthpatel2005'
+      href: SITE_CONFIG.github
     }
   ];
+  
+  // Modal / form state
+  let showModal = false;
+  let isSubmitting = false;
+  let name = '';
+  let email = '';
+  let message = '';
   
   onMount(() => {
     const observer = new IntersectionObserver(
@@ -41,28 +49,80 @@
       observer.observe(ctaSection);
     }
     
-    return () => observer.disconnect();
+    // Close modal on Escape key
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && showModal) showModal = false;
+    };
+    window.addEventListener('keydown', onKey);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('keydown', onKey);
+    };
   });
   
   const openContactForm = () => {
-    // Create a proper mailto link that should work across all systems
-    const subject = encodeURIComponent("Let's collaborate!");
-    const body = encodeURIComponent("Hi Samarth,\n\nI'd love to discuss a potential project with you.\n\nBest regards");
-    const mailtoLink = `mailto:samarthpatel2706@gmail.com?subject=${subject}&body=${body}`;
-    
-    try {
-      // Try to open the default email client
-      window.location.href = mailtoLink;
-    } catch (error) {
-      // Fallback: copy email to clipboard and show notification
-      navigator.clipboard.writeText('samarthpatel2706@gmail.com').then(() => {
-        alert('Email address copied to clipboard: samarthpatel2706@gmail.com');
-      }).catch(() => {
-        // Ultimate fallback: just show the email
-        alert('Please send an email to: samarthpatel2706@gmail.com');
-      });
+    showModal = true;
+  };
+  
+  const closeModal = () => {
+    showModal = false;
+  };
+  
+  const handleOverlayClick = (e: MouseEvent) => {
+    if (e.target === e.currentTarget) closeModal();
+  };
+  
+  const handleOverlayKeydown = (e: KeyboardEvent) => {
+    // Only close when Enter/Space is pressed and the overlay (not an input) is the target or focused.
+    const target = e.target as HTMLElement;
+    const current = e.currentTarget as HTMLElement | null;
+    const active = document.activeElement as HTMLElement | null;
+
+    if ((e.key === 'Enter' || e.key === ' ') && (current && (target === current || active === current))) {
+      e.preventDefault();
+      closeModal();
     }
   };
+  
+  async function handleSubmit(e: Event) {
+    e.preventDefault();
+    if (isSubmitting) return;
+    isSubmitting = true;
+
+    const subject = encodeURIComponent(`${name ? name + ' - ' : ''}Website inquiry`);
+    const bodyText = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+    const body = encodeURIComponent(bodyText);
+    const mailtoLink = `mailto:${SITE_CONFIG.email}?subject=${subject}&body=${body}`;
+
+    try {
+      // If you have a form endpoint (Formspree / EmailJS / Netlify) configured in SITE_CONFIG.formEndpoint,
+      // try to POST first. Fallback to mailto if not present or if POST fails.
+      if ((SITE_CONFIG as any).formEndpoint) {
+        const resp = await fetch((SITE_CONFIG as any).formEndpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({ name, email, message })
+        });
+        if (resp.ok) {
+          alert('Message sent — thank you!');
+          closeModal();
+          isSubmitting = false;
+          return;
+        }
+      }
+
+      // Open user's email client as a fallback
+      window.location.href = mailtoLink;
+      closeModal();
+    } catch (err) {
+      // If anything fails, fallback to mailto
+      window.location.href = mailtoLink;
+      closeModal();
+    } finally {
+      isSubmitting = false;
+    }
+  }
 </script>
 
 <section id="cta" bind:this={ctaSection} class="section-padding bg-gradient-to-br from-primary-600 via-primary-700 to-purple-700 relative overflow-hidden">
@@ -98,7 +158,34 @@
           </svg>
         </button>
       </div>
-      
+
+      <!-- Modal: Contact Form -->
+      {#if showModal}
+        <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50" on:click={handleOverlayClick} on:keydown={handleOverlayKeydown} aria-modal="true" role="dialog" tabindex="-1">
+          <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+            <h3 class="text-xl font-semibold mb-4 text-black">Get in Touch</h3>
+            <form on:submit={handleSubmit} class="space-y-4">
+              <div>
+                <label for="contact-name" class="block text-sm text-black mb-1">Your name</label>
+                <input id="contact-name" class="w-full border rounded px-3 py-2 bg-white text-black" bind:value={name} required />
+              </div>
+              <div>
+                <label for="contact-email" class="block text-sm text-black mb-1">Your email</label>
+                <input id="contact-email" type="email" class="w-full border rounded px-3 py-2 bg-white text-black" bind:value={email} required />
+              </div>
+              <div>
+                <label for="contact-message" class="block text-sm text-black mb-1">Message</label>
+                <textarea id="contact-message" class="w-full border rounded px-3 py-2 h-28 bg-white text-black" bind:value={message} required></textarea>
+              </div>
+              <div class="flex items-center justify-between">
+                <button type="submit" class="bg-primary-600 text-white px-4 py-2 rounded font-medium" disabled={isSubmitting}>{isSubmitting ? 'Sending...' : 'Send Message'}</button>
+                <button type="button" class="text-sm text-gray-600 underline" on:click={closeModal}>Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      {/if}
+
       <!-- Contact Methods -->
       <div class={`transition-all duration-1000 ${sectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style="transition-delay: 300ms">
         <p class="text-blue-200 mb-6">Or reach out directly:</p>

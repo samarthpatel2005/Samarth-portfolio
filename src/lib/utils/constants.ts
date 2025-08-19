@@ -8,6 +8,9 @@ export const SITE_CONFIG = {
   linkedin: 'https://www.linkedin.com/in/samarth-patel-051757283/',
   twitter: 'https://twitter.com/samarthpatel',
   domain: 'https://samarthpatel.me', // Replace with your actual domain
+  // Optional: a form endpoint (Formspree, Netlify, EmailJS, your API) to POST contact form data.
+  // If left empty or undefined, the site will fallback to opening the user's email client.
+    formEndpoint: 'https://formspree.io/f/xrblwpzl'
 };
 
 export const NAVIGATION_ITEMS = [
