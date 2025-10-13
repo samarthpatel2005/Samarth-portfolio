@@ -1,14 +1,28 @@
 <script lang="ts">
-  import Navigation from './lib/Navigation.svelte';
-  import Hero from './lib/Hero.svelte';
+  import Achievements from './lib/Achievements.svelte';
+  import CallToAction from './lib/CallToAction.svelte';
   import Expertise from './lib/Expertise.svelte';
+  import Footer from './lib/Footer.svelte';
+  import Hero from './lib/Hero.svelte';
+  import Navigation from './lib/Navigation.svelte';
   import Projects from './lib/Projects.svelte';
   import TechStack from './lib/TechStack.svelte';
-  import CallToAction from './lib/CallToAction.svelte';
-  import Footer from './lib/Footer.svelte';
 </script>
 
 <svelte:head>
+  <!-- Dark mode initialization script - runs before page renders -->
+  <script>
+    (function() {
+      const savedMode = localStorage.getItem('darkMode');
+      const darkMode = savedMode !== null ? savedMode === 'true' : true; // Default to dark
+      if (darkMode) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
+  
   <title>Samarth Patel - Software Engineer | Portfolio</title>
   <meta name="description" content="Samarth Patel - Software Engineer specializing in full-stack development, cloud architecture, and modern web technologies. Building scalable applications with React, SvelteKit, Node.js, and more." />
   <meta name="keywords" content="software engineer, full-stack developer, web development, React, Svelte, Node.js, TypeScript, cloud architecture" />
@@ -35,6 +49,7 @@
   <Expertise />
   <Projects />
   <TechStack />
+  <Achievements />
   <CallToAction />
 </main>
 

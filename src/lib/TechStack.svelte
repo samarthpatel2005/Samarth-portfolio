@@ -8,40 +8,40 @@
     {
       category: 'Frontend',
       technologies: [
-        { name: 'Svelte', icon: '🔥', color: 'from-orange-500 to-red-500' },
-        { name: 'React', icon: '⚛️', color: 'from-blue-500 to-cyan-500' },
-        { name: 'TypeScript', icon: '📘', color: 'from-blue-600 to-blue-800' },
-        { name: 'Tailwind CSS', icon: '🎨', color: 'from-cyan-500 to-blue-500' },
-        { name: 'Next.js', icon: '▲', color: 'from-gray-800 to-gray-600' },
-        { name: 'SvelteKit', icon: '🚀', color: 'from-orange-500 to-red-500' }
+        { name: 'Svelte', color: 'from-orange-500 to-red-500' },
+        { name: 'React', color: 'from-blue-500 to-cyan-500' },
+        { name: 'TypeScript', color: 'from-blue-600 to-blue-800' },
+        { name: 'Tailwind CSS', color: 'from-cyan-500 to-blue-500' },
+        { name: 'Next.js', color: 'from-gray-800 to-gray-600' },
+        { name: 'SvelteKit', color: 'from-orange-500 to-red-500' }
       ]
     },
     {
       category: 'Backend',
       technologies: [
-        { name: 'Node.js', icon: '🟢', color: 'from-green-500 to-green-600' },
-        { name: 'Python', icon: '🐍', color: 'from-yellow-500 to-blue-500' },
-        { name: 'Express', icon: '⚡', color: 'from-gray-600 to-gray-800' },
-        { name: 'FastAPI', icon: '🚀', color: 'from-green-400 to-blue-500' },
-        { name: 'REST APIs', icon: '🔗', color: 'from-blue-500 to-purple-500' }
+        { name: 'Node.js', color: 'from-green-500 to-green-600' },
+        { name: 'Python', color: 'from-yellow-500 to-blue-500' },
+        { name: 'Express', color: 'from-gray-600 to-gray-800' },
+        { name: 'FastAPI', color: 'from-green-400 to-blue-500' },
+        { name: 'REST APIs', color: 'from-blue-500 to-purple-500' }
       ]
     },
     {
       category: 'Cloud & DevOps',
       technologies: [
-        { name: 'AWS', icon: '☁️', color: 'from-orange-400 to-orange-600' },
-        { name: 'Docker', icon: '🐳', color: 'from-blue-400 to-blue-600' },
-        { name: 'Kubernetes', icon: '⚙️', color: 'from-blue-600 to-purple-600' },
-        { name: 'GitHub Actions', icon: '🔄', color: 'from-gray-700 to-gray-900' }
+        { name: 'AWS', color: 'from-orange-400 to-orange-600' },
+        { name: 'Docker', color: 'from-blue-400 to-blue-600' },
+        { name: 'Kubernetes', color: 'from-blue-600 to-purple-600' },
+        { name: 'GitHub Actions', color: 'from-gray-700 to-gray-900' }
       ]
     },
     {
       category: 'Database',
       technologies: [
-        { name: 'MongoDB', icon: '🍃', color: 'from-green-500 to-green-700' },
-        { name: 'Redis', icon: '🔴', color: 'from-red-500 to-red-700' },
-        { name: 'Supabase', icon: '⚡', color: 'from-green-400 to-blue-500' },
-        { name: 'MySql', icon: '💾', color: 'from-blue-400 to-blue-600' }
+        { name: 'MongoDB', color: 'from-green-500 to-green-700' },
+        { name: 'Redis', color: 'from-red-500 to-red-700' },
+        { name: 'Supabase', color: 'from-green-400 to-blue-500' },
+        { name: 'MySQL', color: 'from-blue-400 to-blue-600' }
       ]
     }
   ];
@@ -95,26 +95,16 @@
           </div>
           
           <!-- Technologies Grid -->
-          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 justify-items-center">
+          <div class="flex flex-wrap justify-center items-center gap-6 max-w-6xl mx-auto">
             {#each category.technologies as tech, techIndex}
               <div 
                 class={`tech-card group relative ${sectionVisible ? 'animate-fade-in' : ''}`}
                 style={`animation-delay: ${(categoryIndex * 200) + (techIndex * 100)}ms`}
               >
-                <!-- Gradient Border Effect -->
-                <div class="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-all duration-300 p-0.5 scale-95 group-hover:scale-100">
-                  <div class="w-full h-full bg-white dark:bg-gray-800 rounded-2xl"></div>
-                </div>
-                
                 <!-- Card Content -->
-                <div class="relative z-10 bg-white dark:bg-gray-800 rounded-2xl p-6 h-full flex flex-col items-center justify-center text-center border border-gray-200 dark:border-gray-700 group-hover:border-transparent transition-all duration-300 shadow-lg dark:shadow-xl group-hover:shadow-xl dark:group-hover:shadow-2xl">
-                  <!-- Icon -->
-                  <div class="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300 filter group-hover:drop-shadow-lg">
-                    {tech.icon}
-                  </div>
-                  
+                <div class="relative z-10 bg-white dark:bg-gray-800 rounded-2xl px-6 py-4 h-16 flex items-center justify-center text-center border border-gray-200 dark:border-gray-700 group-hover:border-blue-500 group-hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] transition-all duration-300 shadow-lg dark:shadow-xl">
                   <!-- Tech Name -->
-                  <span class="text-sm font-bold text-gray-900 dark:text-white transition-colors duration-300 group-hover:text-primary-600 dark:group-hover:text-primary-400">
+                  <span class="text-lg font-bold text-gray-900 dark:text-white transition-colors duration-300 group-hover:text-blue-500 dark:group-hover:text-blue-400">
                     {tech.name}
                   </span>
                 </div>
@@ -142,8 +132,7 @@
 <style>
   .tech-card {
     width: 160px;
-    height: 160px;
-    margin: 0 auto;
+    height: auto;
     opacity: 0;
     transform: translateY(30px) scale(0.9);
     transition: all 0.3s ease;
@@ -154,7 +143,7 @@
   }
   
   .tech-card:hover {
-    transform: translateY(-8px) scale(1.05);
+    transform: translateY(-4px) scale(1.02);
   }
   
   @keyframes cardFadeIn {
@@ -168,18 +157,16 @@
     }
   }
   
-  /* Ensure responsive grid centering */
+  /* Ensure responsive card sizing */
   @media (max-width: 640px) {
     .tech-card {
       width: 140px;
-      height: 140px;
     }
   }
   
   @media (max-width: 480px) {
     .tech-card {
       width: 120px;
-      height: 120px;
     }
   }
 </style>

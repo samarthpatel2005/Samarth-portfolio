@@ -4,21 +4,23 @@
   let mounted = false;
   let isMenuOpen = false;
   let scrollY = 0;
-  let darkMode = false;
+  let darkMode = true; // Default to dark mode
   
   const navItems = [
     { label: 'Home', href: '#hero' },
     { label: 'Expertise', href: '#expertise' },
     { label: 'Projects', href: '#projects' },
     { label: 'Tech Stack', href: '#tech-stack' },
+    { label: 'Achievements', href: '#achievements' },
     { label: 'Contact', href: '#cta' }
   ];
   
   onMount(() => {
     mounted = true;
     
-    // Check for dark mode preference - default to light mode
-    darkMode = localStorage.getItem('darkMode') === 'true';
+    // Check for dark mode preference - default to dark mode
+    const savedMode = localStorage.getItem('darkMode');
+    darkMode = savedMode !== null ? savedMode === 'true' : true;
     
     updateDarkMode();
     

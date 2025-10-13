@@ -24,6 +24,7 @@ const socialLinks = [
     { name: 'Expertise', href: '#expertise' },
     { name: 'Projects', href: '#projects' },
     { name: 'Tech Stack', href: '#tech-stack' },
+    { name: 'Achievements', href: '#achievements' },
     { name: 'Contact', href: '#cta' }
   ];
   
