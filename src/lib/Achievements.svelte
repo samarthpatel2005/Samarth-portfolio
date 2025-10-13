@@ -12,7 +12,7 @@
       description: "Professional certification in cloud architecture and AWS services",
       type: "certification",
       credentialId: "AWS-SA-2024",
-      verifyUrl: "/public/certificates/aws-solutions-architect.pdf"
+      verifyUrl: "/certificates/aws-solutions-architect.pdf"
     },
     {
       title: "Google Cloud Professional Developer",
@@ -21,7 +21,7 @@
       description: "Expertise in developing applications on Google Cloud Platform",
       type: "certification",
       credentialId: "GCP-PD-2024",
-      verifyUrl: "/public/certificates/gcp-professional-developer.pdf"
+      verifyUrl: "/certificates/gcp-professional-developer.pdf"
     },
     {
       title: "ISRO Hack2Skill Certification",
@@ -30,7 +30,7 @@
       description: "Certification in space technology and satellite data analysis",
       type: "certificate",
       credentialId: "ISRO-H2S-2024",
-      verifyUrl: "/public/certificates/Hack2skill-Certificate.png"
+      verifyUrl: "/certificates/Hack2skill-Certificate.png"
     },
     {
       title: "Google Agile Project Management Certificate",
@@ -39,7 +39,7 @@
       description: "Professional certificate in Agile Project Management",
       type: "certificate",
       credentialId: "GOOGLE-DA-2024",
-      verifyUrl: "/public/certificates/Agile Project Management.pdf"
+      verifyUrl: "/certificates/Agile Project Management.pdf"
     },
     {
       title: "Google Foundations of Project Management",
@@ -48,7 +48,7 @@
       description: "Comprehensive training in project management methodologies and tools",
       type: "certificate",
       credentialId: "GOOGLE-PM-2024",
-      verifyUrl: "/public/certificates/Foundations of Project Management.pdf"
+      verifyUrl: "/certificates/Foundations of Project Management.pdf"
     },
     {
       title: "Hackathon Participant",
@@ -57,7 +57,7 @@
       description: "Participent in web development category",
       type: "certificate",
       credentialId: "DEVFEST-2023",
-      verifyUrl: "/public/certificates/Techtonic.jpg"
+      verifyUrl: "/certificates/Techtonic.jpg"
     }
   ];
   
