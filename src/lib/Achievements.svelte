@@ -6,13 +6,13 @@
   
   const achievements = [
     {
-      title: "AWS Certified Solutions Architect",
+      title: "AWS Cloud Practitioner Essentials",
       issuer: "Amazon Web Services",
       date: "2024",
-      description: "Professional certification in cloud architecture and AWS services",
+      description: "Professional certification in cloud Practitioner and AWS services",
       type: "certification",
       credentialId: "AWS-SA-2024",
-      verifyUrl: "/certificates/aws-solutions-architect.pdf"
+      verifyUrl: "/certificates/AWS_Certificate.pdf"
     },
     {
       title: "Google Cloud Professional Developer",
