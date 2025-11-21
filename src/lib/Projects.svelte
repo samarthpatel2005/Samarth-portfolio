@@ -29,7 +29,7 @@
       image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=500&h=300&fit=crop',
       technologies: ['Typescript', 'Node.js', 'Express', 'Supabase'],
       github: 'https://github.com/samarthpatel2005/FInEd',
-      demo: 'https://unique-druid-d481eb.netlify.app/',
+      demo: 'https://fined-coin.netlify.app/',
       featured: true
     },
     {
